@@ -21,14 +21,14 @@ namespace PagouFacil.DTO
         public string resourceURI { get; set; }
         public string name { get; set; }
         public string role { get; set; }
-        public string? type { get; set; }
+        public string type { get; set; }
     }
 
     public class Creators
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        public List<Item> items { get; set; }
+        public IList<Item>? items { get; set; }
         public int returned { get; set; }
     }
 
@@ -36,7 +36,7 @@ namespace PagouFacil.DTO
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        public List<Item> items { get; set; }
+        public IList<Item>? items { get; set; }
         public int returned { get; set; }
     }
 
@@ -44,7 +44,7 @@ namespace PagouFacil.DTO
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        public List<Item> items { get; set; }
+        public IList<Item>? items { get; set; }
         public int returned { get; set; }
     }
 
@@ -52,7 +52,7 @@ namespace PagouFacil.DTO
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        public IList<Item> items { get; set; }
+        public IList<Item>? items { get; set; }
         public int returned { get; set; }
     }
 
@@ -60,7 +60,7 @@ namespace PagouFacil.DTO
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        public List<Item>? items { get; set; }
+        public IList<Item>? items { get; set; }
         public int returned { get; set; }
     }
 
@@ -76,12 +76,12 @@ namespace PagouFacil.DTO
         public string title { get; set; }
         public string description { get; set; }
         public string resourceURI { get; set; }
-        public List<Url> urls { get; set; }
+        public IList<Url> urls { get; set; }
         public int startYear { get; set; }
         public int endYear { get; set; }
         public string rating { get; set; }
         public string type { get; set; }
-        public DateTime modified { get; set; }
+        public string modified { get; set; }
         public Thumbnail thumbnail { get; set; }
         public Creators creators { get; set; }
         public Characters characters { get; set; }
@@ -98,7 +98,7 @@ namespace PagouFacil.DTO
         public int limit { get; set; }
         public int total { get; set; }
         public int count { get; set; }
-        public List<Result> results { get; set; }
+        public IList<Result> results { get; set; }
     }
 
     public class MarvelDTO

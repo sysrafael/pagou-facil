@@ -7,9 +7,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PagouFacil.Business;
+using PagouFacil.Business.Implementations;
+using PagouFacil.Business.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace PagouFacil
@@ -28,8 +31,10 @@ namespace PagouFacil
         {
             services.AddControllers();
 
-            var url = new Url();
-            Configuration.Bind(url);
+            services.AddScoped<IPersonagens, Personagens>();
+            services.AddScoped<IService, Service>();
+
+            services.AddSingleton<Url>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

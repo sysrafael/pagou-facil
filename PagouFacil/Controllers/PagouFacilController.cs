@@ -16,7 +16,7 @@ namespace PagouFacil.Controllers
             _personagens = personagens;
         }
 
-        [Route("/personagens")]
+        [Route("personagens")]
         [HttpGet]
         public async Task<ActionResult<SucessDTO>> getPersonagens()
         {
