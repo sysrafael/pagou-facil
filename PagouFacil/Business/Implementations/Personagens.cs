@@ -26,13 +26,13 @@ namespace PagouFacil.Business.Implementations
                 var marverResult = await _service.getMarvelPersonages();
 
                 if (typeof(MarvelDTO).GetProperties().All(x => x.GetValue(marverResult) == null))
-                    throw new Exception("Falha ao consultar os dados da API da Marvel");
+                    throw new Exception("Falha ao consultar os dados da API da Marvel. Nenhum dado foi obtido.");
 
-                //Não existe "series" no objeto retornado 
                 var comics = marverResult?.data?.results?.Where(x => x.comics.items.Any()).Select(x => x.comics.items.FirstOrDefault().name).ToList();
                 var stories = marverResult?.data?.results?.Where(x => x.stories.items.Any()).Select(x => x.stories.items.FirstOrDefault().name).ToList();
                 var events = marverResult?.data?.results?.Where(x => x.events.items.Any()).Select(x => x.events.items.FirstOrDefault().name).ToList();
-
+                //var series = marverResult?.data?.results?.Where(x => x.series.items.Any()).Select(x => x.series.items.FirstOrDefault().name).ToList();
+                
                 //salvar arquivo TXT no diretório da aplicação 
 
                 sucess.setSucess();
