@@ -6,6 +6,6 @@ namespace PagouFacil.Business.Interfaces
     public interface IPersonagens
     {
         public Task<SucessDTO> getPersonagensMarvel();
-        public Task createFile(MarvelContentLists marvelContentLists);
+        public Task<string> createFile(MarvelContentLists marvelContentLists);
     }
 }

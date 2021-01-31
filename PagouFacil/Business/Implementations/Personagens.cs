@@ -19,7 +19,7 @@ namespace PagouFacil.Business.Implementations
             _configuration = configuration;
         }
 
-        public async Task createFile(MarvelContentLists marvelContentLists)
+        public async Task<string> createFile(MarvelContentLists marvelContentLists)
         {
             var applicationPath = Path.GetDirectoryName(System.Reflection
                      .Assembly.GetExecutingAssembly().Location);
@@ -47,6 +47,8 @@ namespace PagouFacil.Business.Implementations
                 streamWriter.WriteLine("******* Series *******");
                 foreach (var serie in marvelContentLists.series) streamWriter.WriteLine(serie);
             }
+
+            return fileDestination;
         }
 
         public async Task<SucessDTO> getPersonagensMarvel()
@@ -64,9 +66,10 @@ namespace PagouFacil.Business.Implementations
                 var events = marverResult?.data?.results?.Where(x => x.events.items.Any()).Select(x => x.events.items.FirstOrDefault().name).ToList();
                 var series = marverResult?.data?.results?.Where(x => x.series.items.Any()).Select(x => x.series.items.FirstOrDefault().name).ToList();
 
-                await createFile(new MarvelContentLists(comics, stories, events, series));
+                await sucess.setSucess(await createFile(
+                  new MarvelContentLists(comics, stories, events, series))
+                );
 
-                sucess.setSucess();
                 return sucess;
             }
             catch (Exception e)
