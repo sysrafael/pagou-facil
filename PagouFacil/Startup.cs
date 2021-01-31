@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using PagouFacil.Business;
 using PagouFacil.Business.Implementations;
 using PagouFacil.Business.Interfaces;
@@ -35,6 +36,17 @@ namespace PagouFacil
             services.AddScoped<IService, Service>();
 
             services.AddSingleton<SourceAddress>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Pagou Fácil API",
+                    Description = "API correspondente ao desafio Pagou Fácil",
+                });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +56,15 @@ namespace PagouFacil
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Desafio API Pagou Fácil");
+                c.RoutePrefix = string.Empty;
+            });
+
 
             app.UseHttpsRedirection();
 
