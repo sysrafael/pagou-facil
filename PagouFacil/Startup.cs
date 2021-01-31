@@ -34,7 +34,7 @@ namespace PagouFacil
             services.AddScoped<IPersonagens, Personagens>();
             services.AddScoped<IService, Service>();
 
-            services.AddSingleton<Url>();
+            services.AddSingleton<SourceAddress>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -20,18 +20,17 @@ namespace PagouFacil.Business.Implementations
 
         public async Task<MarvelDTO> getMarvelPersonages()
         {
-            var url = new Url(_configuration);
-            var urlRequest = url.BaseUrl + url.ApiKey + url.Hash;
+            var sourceAddress = new SourceAddress(_configuration);
+            var urlRequest = sourceAddress.BaseUrl + sourceAddress.ApiKey + sourceAddress.Hash;
 
             var client = new RestClient(urlRequest);
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
+            var response = client.Execute(request);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                JsonElement jsonElement = JsonSerializer.Deserialize<dynamic>(response.Content);
-                var marvelResult = JsonSerializer.Deserialize<MarvelDTO>(jsonElement.ToString());
+                var marvelResult = JsonSerializer.Deserialize<MarvelDTO>(response.Content);
                 return marvelResult;
             }
 

@@ -70,6 +70,14 @@ namespace PagouFacil.DTO
         public string name { get; set; }
     }
 
+    public class Series
+    {
+        public int available { get; set; }
+        public string collectionURI { get; set; }
+        public IList<Item> items { get; set; }
+        public int returned { get; set; }
+    }
+
     public class Result
     {
         public int id { get; set; }
@@ -86,6 +94,7 @@ namespace PagouFacil.DTO
         public Creators creators { get; set; }
         public Characters characters { get; set; }
         public Stories stories { get; set; }
+        public Series series { get; set; }
         public Comics comics { get; set; }
         public Events events { get; set; }
         public Next next { get; set; }
